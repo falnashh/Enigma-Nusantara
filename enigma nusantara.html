@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Enigma Nusantara</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+/* =========================
+RESET
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#050505;
+    color:white;
+    font-family:'Inter',sans-serif;
+    overflow-x:hidden;
+}
+
+/* =========================
+BACKGROUND
+========================= */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:
+    linear-gradient(rgba(0,0,0,.80),rgba(0,0,0,.94)),
+    url('https://images.unsplash.com/photo-1511818966892-d7d671e672a2?q=80&w=1600&auto=format&fit=crop');
+    background-size:cover;
+    background-position:center;
+    z-index:-3;
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:url('https://www.transparenttextures.com/patterns/asfalt-dark.png');
+    opacity:.12;
+    z-index:-2;
+}
+
+/* =========================
+ORNAMENT NUSANTARA
+========================= */
+
+.ornament-top{
+    position:absolute;
+    top:0;
+    left:50%;
+    transform:translateX(-50%);
+    width:300px;
+    opacity:.10;
+    pointer-events:none;
+}
+
+.ornament-side{
+    position:absolute;
+    width:180px;
+    opacity:.07;
+    pointer-events:none;
+}
+
+.left-orn{
+    left:-30px;
+    top:50%;
+}
+
+.right-orn{
+    right:-30px;
+    top:25%;
+}
+
+/* =========================
+NAVBAR
+========================= */
+
+nav{
+    position:fixed;
+    width:100%;
+    top:0;
+    left:0;
+    padding:20px 7%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    backdrop-filter:blur(10px);
+    background:rgba(0,0,0,.35);
+    border-bottom:1px solid rgba(255,255,255,.08);
+    z-index:999;
+}
+
+.logo{
+    font-family:'Cinzel',serif;
+    font-size:28px;
+    font-weight:700;
+    letter-spacing:3px;
+}
+
+.nav-links{
+    display:flex;
+    gap:35px;
+}
+
+.nav-links a{
+    color:white;
+    text-decoration:none;
+    font-size:14px;
+    letter-spacing:1px;
+    transition:.3s;
+    position:relative;
+}
+
+.nav-links a:hover{
+    color:#c9a96d;
+}
+
+.nav-links a::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-6px;
+    width:0%;
+    height:1px;
+    background:#c9a96d;
+    transition:.3s;
+}
+
+.nav-links a:hover::after{
+    width:100%;
+}
+
+/* =========================
+HERO
+========================= */
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    padding:0 7%;
+    position:relative;
+}
+
+.hero-container{
+    width:100%;
+    display:grid;
+    grid-template-columns:1.1fr .9fr;
+    align-items:center;
+    gap:60px;
+}
+
+.hero-content{
+    max-width:760px;
+}
+
+.hero h1{
+    font-family:'Cinzel',serif;
+    font-size:88px;
+    line-height:1;
+    margin-bottom:25px;
+    text-transform:uppercase;
+}
+
+.hero p{
+    color:#d3d3d3;
+    line-height:1.9;
+    font-size:18px;
+    margin-bottom:40px;
+}
+
+/* =========================
+BUTTON
+========================= */
+
+.buttons{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    padding:15px 32px;
+    text-decoration:none;
+    color:white;
+    transition:.4s;
+    font-weight:600;
+    letter-spacing:1px;
+}
+
+.btn-primary{
+    background:#b19058;
+}
+
+.btn-primary:hover{
+    background:#d8b77a;
+    transform:translateY(-3px);
+}
+
+.btn-secondary{
+    border:1px solid rgba(255,255,255,.2);
+}
+
+.btn-secondary:hover{
+    background:rgba(255,255,255,.06);
+}
+
+/* =========================
+HERO IMAGE
+========================= */
+
+.hero-image{
+    position:relative;
+    width:100%;
+    height:720px;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,.08);
+    box-shadow:
+    0 0 60px rgba(0,0,0,.6),
+    0 0 30px rgba(177,144,88,.12);
+}
+
+.hero-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:1s;
+    filter:
+    brightness(.75)
+    contrast(1.05)
+    saturate(.9);
+}
+
+.hero-image:hover img{
+    transform:scale(1.04);
+}
+
+.hero-image-overlay{
+    position:absolute;
+    inset:0;
+    background:
+    linear-gradient(to top, rgba(0,0,0,.7), transparent),
+    linear-gradient(to left, rgba(0,0,0,.45), transparent);
+}
+
+/* =========================
+SECTION
+========================= */
+
+section{
+    padding:120px 7%;
+    position:relative;
+}
+
+.section-title{
+    font-family:'Cinzel',serif;
+    font-size:52px;
+    margin-bottom:20px;
+    position:relative;
+}
+
+.section-title::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-10px;
+    width:90px;
+    height:2px;
+    background:#b19058;
+}
+
+.section-text{
+    color:#c8c8c8;
+    line-height:1.9;
+    max-width:900px;
+    margin-bottom:60px;
+}
+
+/* =========================
+WATCH GAMEPLAY
+========================= */
+
+.video-wrapper{
+    width:100%;
+    height:650px;
+    border:1px solid rgba(255,255,255,.1);
+    overflow:hidden;
+    position:relative;
+    background:black;
+}
+
+.video-wrapper video{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.video-overlay{
+    position:absolute;
+    inset:0;
+    background:
+    linear-gradient(to top, rgba(0,0,0,.7), transparent),
+    linear-gradient(to bottom, rgba(0,0,0,.3), transparent);
+    pointer-events:none;
+}
+
+.video-title{
+    position:absolute;
+    left:40px;
+    bottom:40px;
+    z-index:2;
+}
+
+.video-title h2{
+    font-family:'Cinzel',serif;
+    font-size:42px;
+    margin-bottom:10px;
+}
+
+.video-title p{
+    color:#d0d0d0;
+}
+
+/* =========================
+FEATURES
+========================= */
+
+.features{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:rgba(255,255,255,.03);
+    border:1px solid rgba(255,255,255,.08);
+    padding:35px;
+    backdrop-filter:blur(10px);
+    transition:.4s;
+    position:relative;
+    overflow:hidden;
+}
+
+.card::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(transparent,rgba(177,144,88,.08));
+    opacity:0;
+    transition:.4s;
+}
+
+.card:hover::before{
+    opacity:1;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    border-color:#b19058;
+}
+
+.card h3{
+    font-family:'Cinzel',serif;
+    margin-bottom:15px;
+    font-size:24px;
+}
+
+.card p{
+    color:#c5c5c5;
+    line-height:1.8;
+}
+
+/* =========================
+ENTITY
+========================= */
+
+.entity-box{
+    background:
+    linear-gradient(rgba(0,0,0,.78),rgba(0,0,0,.9)),
+    url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1600&auto=format&fit=crop');
+    background-size:cover;
+    background-position:center;
+    padding:100px 60px;
+    border:1px solid rgba(255,255,255,.08);
+}
+
+.entity-box h2{
+    font-family:'Cinzel',serif;
+    font-size:58px;
+    margin-bottom:20px;
+}
+
+.entity-box p{
+    max-width:700px;
+    color:#d0d0d0;
+    line-height:1.9;
+}
+
+/* =========================
+GALLERY
+========================= */
+
+.gallery{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:20px;
+}
+
+.gallery img{
+    width:100%;
+    height:300px;
+    object-fit:cover;
+    border:1px solid rgba(255,255,255,.08);
+    transition:.4s;
+}
+
+.gallery img:hover{
+    transform:scale(1.03);
+}
+
+/* =========================
+DEVELOPER
+========================= */
+
+.devs{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:25px;
+}
+
+.dev-card{
+    background:rgba(255,255,255,.03);
+    border:1px solid rgba(255,255,255,.08);
+    padding:35px;
+}
+
+.dev-card h3{
+    font-family:'Cinzel',serif;
+    font-size:24px;
+    margin-bottom:10px;
+}
+
+.dev-role{
+    color:#c9a96d;
+    margin-bottom:20px;
+}
+
+.dev-card p{
+    color:#cfcfcf;
+    line-height:1.8;
+}
+
+/* =========================
+FOOTER
+========================= */
+
+footer{
+    padding:60px 7%;
+    border-top:1px solid rgba(255,255,255,.08);
+    text-align:center;
+}
+
+footer h2{
+    font-family:'Cinzel',serif;
+    margin-bottom:15px;
+}
+
+footer p{
+    color:#999;
+}
+
+/* =========================
+SCROLL REVEAL
+========================= */
+
+.reveal{
+    opacity:0;
+    transform:translateY(40px);
+    transition:1s ease;
+}
+
+.reveal.active{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* =========================
+RESPONSIVE
+========================= */
+
+@media(max-width:1000px){
+
+.hero-container{
+    grid-template-columns:1fr;
+}
+
+.hero-image{
+    height:500px;
+}
+
+}
+
+@media(max-width:768px){
+
+.hero h1{
+    font-size:54px;
+}
+
+.section-title{
+    font-size:40px;
+}
+
+.video-wrapper{
+    height:350px;
+}
+
+.hero-image{
+    height:400px;
+}
+
+.nav-links{
+    display:none;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ORNAMENT -->
+
+<img class="ornament-top"
+src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Batik_Indonesia_Motif.svg/1024px-Batik_Indonesia_Motif.svg.png">
+
+<img class="ornament-side left-orn"
+src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Wayang.svg/768px-Wayang.svg.png">
+
+<img class="ornament-side right-orn"
+src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Wayang.svg/768px-Wayang.svg.png">
+
+<!-- NAVBAR -->
+
+<nav>
+
+<div class="logo">ENIGMA</div>
+
+<div class="nav-links">
+<a href="#about">About</a>
+<a href="#watch">Gameplay</a>
+<a href="#features">Features</a>
+<a href="#gallery">Gallery</a>
+<a href="#dev">Developers</a>
+</div>
+
+</nav>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div class="hero-container">
+
+<!-- LEFT -->
+
+<div class="hero-content reveal">
+
+<h1>
+ENIGMA<br>
+NUSANTARA
+</h1>
+
+<p>
+Game horror eksplorasi museum berbasis budaya Indonesia.
+Jelajahi Museum Nasional pada malam hari,
+pecahkan teka-teki artefak,
+dan bertahan hidup dari Entity misterius yang memburumu.
+</p>
+
+<div class="buttons">
+<a href="#watch" class="btn btn-primary">WATCH GAMEPLAY</a>
+<a href="#" class="btn btn-secondary">DOWNLOAD DEMO</a>
+</div>
+
+</div>
+
+<!-- RIGHT -->
+
+<div class="hero-image reveal">
+
+<!-- GANTI GAMBAR DISINI -->
+<img src="https://i.postimg.cc/K3kGgTh8/Enigma-Nusantara.png">
+
+<div class="hero-image-overlay"></div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ABOUT -->
+
+<section id="about">
+
+<div class="reveal">
+
+<h2 class="section-title">
+THE EXPERIENCE
+</h2>
+
+<p class="section-text">
+Enigma Nusantara menghadirkan pengalaman horror psikologis
+yang menggabungkan budaya Indonesia,
+eksplorasi museum realistis,
+dan teka-teki berbasis sejarah.
+Menggunakan pendekatan atmosferik sinematik,
+pemain akan merasakan kesunyian museum malam hari
+yang dipenuhi misteri dan ancaman tersembunyi.
+</p>
+
+</div>
+
+</section>
+
+<!-- WATCH GAMEPLAY -->
+
+<section id="watch">
+
+<div class="reveal">
+
+<h2 class="section-title">
+WATCH GAMEPLAY
+</h2>
+
+<p class="section-text">
+Masukkan trailer atau gameplay utama Enigma Nusantara di bawah ini.
+Bagian ini dirancang seperti cinematic showcase modern ala website game AAA.
+</p>
+
+<div class="video-wrapper">
+
+<!-- GANTI VIDEO DISINI -->
+<video autoplay muted loop controls>
+
+<source src="gameplay.mp4" type="video/mp4">
+
+</video>
+
+<div class="video-overlay"></div>
+
+<div class="video-title">
+<h2>ENTER THE MUSEUM</h2>
+<p>
+A night inside Museum Nasional Indonesia.
+</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- FEATURES -->
+
+<section id="features">
+
+<div class="reveal">
+
+<h2 class="section-title">
+GAMEPLAY FEATURES
+</h2>
+
+<div class="features">
+
+<div class="card">
+<h3>Exploration</h3>
+<p>
+Menjelajahi museum realistis dengan atmosfer sunyi dan mencekam.
+</p>
+</div>
+
+<div class="card">
+<h3>Puzzle</h3>
+<p>
+Menyelesaikan teka-teki berdasarkan sejarah dan artefak Indonesia.
+</p>
+</div>
+
+<div class="card">
+<h3>Survival Horror</h3>
+<p>
+Bersembunyi dan menghindari Entity misterius di dalam museum.
+</p>
+</div>
+
+<div class="card">
+<h3>Photography</h3>
+<p>
+Gunakan kamera untuk dokumentasi koleksi dan menyelesaikan objective.
+</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ENTITY -->
+
+<section>
+
+<div class="entity-box reveal">
+
+<h2>THE ENTITY</h2>
+
+<p>
+Museum Nasional tidak pernah benar-benar kosong.
+Saat malam tiba,
+seseorang bergerak di balik lorong gelap museum.
+Selama menyelesaikan teka-teki,
+kamu akan terus diburu oleh sosok misterius yang mencoba menghilangkan semua saksi.
+</p>
+
+</div>
+
+</section>
+
+<!-- GALLERY -->
+
+<section id="gallery">
+
+<div class="reveal">
+
+<h2 class="section-title">
+MUSEUM COLLECTIONS
+</h2>
+
+<p class="section-text">
+Terinspirasi dari koleksi Museum Nasional Indonesia,
+mulai dari arca,
+artefak budaya,
+hingga suasana arsitektur museum yang realistis.
+</p>
+
+<div class="gallery">
+
+<img src="https://images.unsplash.com/photo-1518998053901-5348d3961a04?q=80&w=1200&auto=format&fit=crop">
+
+<img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop">
+
+<img src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?q=80&w=1200&auto=format&fit=crop">
+
+<img src="https://images.unsplash.com/photo-1511818966892-d7d671e672a2?q=80&w=1200&auto=format&fit=crop">
+
+</div>
+
+</div>
+
+</section>
+
+<!-- DEVELOPERS -->
+
+<section id="dev">
+
+<div class="reveal">
+
+<h2 class="section-title">
+DEVELOPERS
+</h2>
+
+<div class="devs">
+
+<div class="dev-card">
+<h3>Achmad Rizqy Kamal Hafidz</h3>
+<div class="dev-role">
+Business Manager & Creative Director
+</div>
+<p>
+Bertanggung jawab terhadap strategi bisnis,
+creative direction,
+dan pengembangan konsep Enigma Nusantara.
+</p>
+</div>
+
+<div class="dev-card">
+<h3>Falihin Nashih</h3>
+<div class="dev-role">
+Lead Game Developer & Technical Artist
+</div>
+<p>
+Menangani seluruh aspek teknis,
+Unreal Engine 5,
+environment 3D,
+lighting,
+dan gameplay system.
+</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+<h2>ENIGMA NUSANTARA</h2>
+
+<p>
+© 2026 FALL-UP STUDIO — ALL RIGHTS RESERVED
+</p>
+
+</footer>
+
+<script>
+
+/* =========================
+SCROLL REVEAL
+========================= */
+
+function reveal(){
+
+const reveals = document.querySelectorAll(".reveal");
+
+for(let i = 0; i < reveals.length; i++){
+
+let windowHeight = window.innerHeight;
+let elementTop = reveals[i].getBoundingClientRect().top;
+let elementVisible = 100;
+
+if(elementTop < windowHeight - elementVisible){
+reveals[i].classList.add("active");
+}
+
+}
+
+}
+
+window.addEventListener("scroll", reveal);
+
+reveal();
+
+/* =========================
+FLASHLIGHT CURSOR
+========================= */
+
+const light = document.createElement("div");
+
+light.style.position = "fixed";
+light.style.width = "320px";
+light.style.height = "320px";
+light.style.borderRadius = "50%";
+light.style.pointerEvents = "none";
+light.style.background =
+"radial-gradient(circle, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0) 70%)";
+
+light.style.zIndex = "9999";
+light.style.transform = "translate(-50%, -50%)";
+
+document.body.appendChild(light);
+
+document.addEventListener("mousemove", (e)=>{
+
+light.style.left = e.clientX + "px";
+light.style.top = e.clientY + "px";
+
+});
+
+</script>
+
+</body>
+</html>
