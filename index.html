@@ -300,10 +300,10 @@ WATCH GAMEPLAY
     background:black;
 }
 
-.video-wrapper video{
+.video-wrapper iframe{
     width:100%;
     height:100%;
-    object-fit:cover;
+    border:none;
 }
 
 .video-overlay{
@@ -649,13 +649,13 @@ Namun proyek ini masih dalam tahap pengembangan (Alpha Version).
 
 <div class="video-wrapper">
 
-<!-- GANTI VIDEO DISINI -->
-<video autoplay muted loop controls>
-
-<iframe 
-  src="https://www.youtube.com/embed/Fybgi5oodUo?autoplay=1&mute=1&loop=1&playlist=Fybgi5oodUo&controls=0&showinfo=0&modestbranding=1"
+<iframe
+  width="100%"
+  height="100%"
+  src="https://www.youtube.com/embed/Fybgi5oodUo?autoplay=1&mute=1&loop=1&playlist=Fybgi5oodUo&controls=1&modestbranding=1"
+  title="Gameplay Enigma"
   frameborder="0"
-  allow="autoplay; encrypted-media"
+  allow="autoplay; fullscreen"
   allowfullscreen>
 </iframe>
 
