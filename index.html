@@ -368,15 +368,21 @@ FEATURES (Card Grid)
 }
 
 /* =========================
-ENTITY BOX (Responsif)
+ENTITY BOX (Responsif) - DIPERPANJANG KE BAWAH
 ========================= */
 .entity-box {
     background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.92)), url("Screenshot 2026-05-14 103154.png");
     background-size: cover;
     background-position: center;
-    padding: 100px 60px;
+    background-repeat: no-repeat;
+    /* MEMPERPANJANG KE BAWAH */
+    min-height: 650px;
+    padding: 120px 60px;
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .entity-box h2 {
@@ -510,7 +516,8 @@ RESPONSIVE KHUSUS HP (TABLET & HP)
     }
 
     .entity-box {
-        padding: 45px 25px;
+        padding: 80px 30px;
+        min-height: 500px;
     }
 }
 
@@ -571,6 +578,11 @@ RESPONSIVE KHUSUS HP (TABLET & HP)
         font-size: 14px;
     }
 
+    .entity-box {
+        padding: 60px 20px;
+        min-height: 450px;
+    }
+
     .gallery img {
         height: 210px;
     }
@@ -604,7 +616,8 @@ RESPONSIVE KHUSUS HP (TABLET & HP)
     }
 
     .entity-box {
-        padding: 35px 20px;
+        padding: 40px 16px;
+        min-height: 400px;
     }
 
     .entity-box h2 {
@@ -677,7 +690,7 @@ img {
     </div>
 </section>
 
-<!-- WATCH GAMEPLAY (Video) -->
+<!-- WATCH GAMEPLAY (Video) - PAUSE & SPEAKER ON -->
 <section id="watch">
     <div class="reveal">
         <h2 class="section-title">GAMEPLAY</h2>
@@ -685,11 +698,12 @@ img {
             Gameplay utama Enigma Nusantara di bawah ini. Namun proyek ini masih dalam tahap pengembangan (Alpha Version).
         </p>
         <div class="video-wrapper">
+            <!-- HAPUS autoplay, mute, loop -> video pause & speaker on -->
             <iframe 
-                src="https://www.youtube.com/embed/Fybgi5oodUo?autoplay=1&mute=1&loop=1&playlist=Fybgi5oodUo&controls=1&modestbranding=1"
+                src="https://www.youtube.com/embed/Fybgi5oodUo?controls=1&modestbranding=1"
                 title="Gameplay Enigma Nusantara"
                 frameborder="0"
-                allow="autoplay; fullscreen"
+                allow="fullscreen"
                 allowfullscreen>
             </iframe>
             <div class="video-overlay"></div>
@@ -777,17 +791,17 @@ img {
     reveal();
 
     /* =========================
-    LIGHT CURSOR (effek spotlight, tidak mengganggu HP)
+    LIGHT CURSOR - DIPERCAH (lebih terang)
     ========================= */
-    // Hanya aktifkan di perangkat dengan pointer halus (mouse) & lebar layar > 768px
     if (window.matchMedia("(pointer: fine) and (min-width: 768px)").matches) {
         const light = document.createElement("div");
         light.style.position = "fixed";
-        light.style.width = "400px";
-        light.style.height = "400px";
-        light.style.borderRadius = "200%";
+        light.style.width = "450px";
+        light.style.height = "450px";
+        light.style.borderRadius = "50%";
         light.style.pointerEvents = "none";
-        light.style.background = "radial-gradient(circle, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0) 70%)";
+        // Gradien lebih terang: opacity pusat 0.22, tepi 0
+        light.style.background = "radial-gradient(circle, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0) 70%)";
         light.style.zIndex = "9999";
         light.style.transform = "translate(-50%, -50%)";
         document.body.appendChild(light);
