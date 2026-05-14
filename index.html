@@ -375,7 +375,6 @@ ENTITY BOX (Responsif) - DIPERPANJANG KE BAWAH
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    /* MEMPERPANJANG KE BAWAH */
     min-height: 650px;
     padding: 120px 60px;
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -399,7 +398,7 @@ ENTITY BOX (Responsif) - DIPERPANJANG KE BAWAH
 }
 
 /* =========================
-GALLERY
+GALLERY - DIPERBAIKI AGAR GAMBAR TIDAK GEPENG
 ========================= */
 .gallery {
     display: grid;
@@ -409,8 +408,10 @@ GALLERY
 
 .gallery img {
     width: 100%;
-    height: 260px;
-    object-fit: cover;
+    height: auto;           /* biar proporsional */
+    max-height: 280px;      /* tinggi maksimal seragam */
+    object-fit: contain;    /* seluruh gambar terlihat tanpa terpotong */
+    background: #0a0a0a;    /* background gelap di area kosong */
     border: 1px solid rgba(255, 255, 255, 0.08);
     transition: 0.4s;
     border-radius: 8px;
@@ -584,7 +585,7 @@ RESPONSIVE KHUSUS HP (TABLET & HP)
     }
 
     .gallery img {
-        height: 210px;
+        max-height: 220px;
     }
 
     .dev-card {
@@ -630,6 +631,10 @@ RESPONSIVE KHUSUS HP (TABLET & HP)
 
     .devs {
         gap: 20px;
+    }
+
+    .gallery img {
+        max-height: 180px;
     }
 }
 
@@ -800,7 +805,6 @@ img {
         light.style.height = "450px";
         light.style.borderRadius = "50%";
         light.style.pointerEvents = "none";
-        // Gradien lebih terang: opacity pusat 0.22, tepi 0
         light.style.background = "radial-gradient(circle, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0) 70%)";
         light.style.zIndex = "9999";
         light.style.transform = "translate(-50%, -50%)";
